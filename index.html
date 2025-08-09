@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutant HippieBat</title>
+    <!--
+    This is the Google Fonts import for a pixel-art style font.
+    We're using "Press Start 2P" to match the aesthetic of the NFT.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!--
+    Using a single style block for simplicity.
+    This CSS creates the psychedelic, pixelated vibe.
+    -->
+    <style>
+        /* CSS variables for a consistent color palette based on the NFT */
+        :root {
+            --bg-color: #f7e099; /* A warm, golden background */
+            --accent-purple: #6a0584; /* The purple from the bat's headband */
+            --text-color: #ffffff;
+            --text-shadow-color: #000000;
+        }
+
+        body {
+            /* Using a radial gradient to simulate the sunburst effect */
+            background: radial-gradient(circle at center, var(--bg-color) 0%, #a0522d 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Press Start 2P', cursive;
+            color: var(--text-color);
+            text-shadow: 2px 2px 0 var(--text-shadow-color);
+            /* This animation adds a subtle, hypnotic pulse to the background */
+            animation: pulse-bg 10s infinite alternate;
+            overflow: hidden;
+        }
+
+        @keyframes pulse-bg {
+            from {
+                background-size: 100% 100%;
+            }
+            to {
+                background-size: 150% 150%;
+            }
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Adds space between the image and the new lore box */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+        }
+        
+        .bat-image-container {
+            position: relative;
+            cursor: pointer;
+            width: 300px;
+            height: 300px;
+            /* Scale the image up on hover for a cool effect */
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+
+        .bat-image-container:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 15px var(--accent-purple));
+        }
+
+        .bat-image {
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated; /* Ensures the pixel art stays sharp */
+        }
+
+        /* Styling for the new lore box */
+        .lore-box {
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            border: 3px solid var(--accent-purple);
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .lore-box p {
+            margin: 0;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+        
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid var(--accent-purple);
+            padding: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+            display: none;
+            z-index: 100;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            .bat-image-container {
+                width: 200px;
+                height: 200px;
+            }
+            .lore-box {
+                max-width: 90%;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Mutant HippieBat</h1>
+        <div class="bat-image-container">
+            <!-- The NFT image is the central hero element -->
+            <img class="bat-image" src="mutant_hippiebat.png" alt="A pixelated Mutant HippieBat flying with a psychedelic background.">
+        </div>
+
+        <!-- The new lore box provides a backstory for the character -->
+        <div class="lore-box">
+            <p>From the darkest depths of the digital cosmos, a groovy hero emerges! The Mutant HippieBat, a creature of pure chill and radical energy, flies on waves of cosmic sound. With its trusty headband and ever-present stick of incense, it travels the pixelverse, bringing peace, love, and sweet jams to all!</p>
+        </div>
+    </div>
+
+    <!-- This is a custom message box to replace alert() -->
+    <div id="messageBox" class="message-box"></div>
+
+    <!--
+    Using a single script block for all interactive elements.
+    Tone.js is used for sound effects.
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script>
+        // Get the main elements from the HTML
+        const batImageContainer = document.querySelector('.bat-image-container');
+        const messageBox = document.getElementById('messageBox');
+        
+        // Function to show a message in our custom box, which replaces alert()
+        function showMessage(text) {
+            messageBox.textContent = text;
+            messageBox.style.display = 'block';
+            // Hide the message after 3 seconds
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3000);
+        }
+
+        // Initialize the Tone.js synth for a simple sound effect
+        const synth = new Tone.Synth().toDestination();
+
+        // Add a click event listener to the bat image
+        batImageContainer.addEventListener('click', () => {
+            // Play a sound effect
+            synth.triggerAttackRelease("C4", "8n");
+            
+            // Show a fun, pixel-art style message
+            showMessage("Peace, Love, & Pixel Dust!");
+        });
+        
+    </script>
+
+</body>
+</html>
+
