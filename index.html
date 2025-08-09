@@ -27,7 +27,7 @@
         body {
             /* Using a radial gradient to simulate the sunburst effect */
             background: radial-gradient(circle at center, var(--bg-color) 0%, #a0522d 100%);
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -38,7 +38,7 @@
             text-shadow: 2px 2px 0 var(--text-shadow-color);
             /* This animation adds a subtle, hypnotic pulse to the background */
             animation: pulse-bg 10s infinite alternate;
-            overflow: hidden;
+            padding: 20px;
         }
 
         @keyframes pulse-bg {
@@ -55,7 +55,7 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Adds space between the image and the new lore box */
+            gap: 20px; /* Adds space between the image, lore box, and links */
         }
 
         h1 {
@@ -85,7 +85,7 @@
             image-rendering: pixelated; /* Ensures the pixel art stays sharp */
         }
 
-        /* Styling for the new lore box */
+        /* Styling for the lore box */
         .lore-box {
             background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
             border: 3px solid var(--accent-purple);
@@ -99,6 +99,32 @@
             margin: 0;
             line-height: 1.5;
             font-size: 1rem;
+        }
+        
+        /* Styling for the container of the new button-like links */
+        .links-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows links to wrap to the next line on small screens */
+            justify-content: center;
+            gap: 15px; /* Space between buttons */
+        }
+
+        /* Styling for the button-like links themselves */
+        .collection-link {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--text-color);
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid var(--accent-purple);
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .collection-link:hover {
+            background-color: var(--accent-purple);
+            transform: translateY(-2px);
         }
         
         .message-box {
@@ -128,6 +154,9 @@
                 max-width: 90%;
                 font-size: 0.8rem;
             }
+            .collection-link {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -140,9 +169,16 @@
             <img class="bat-image" src="mutant_hippiebat.png" alt="A pixelated Mutant HippieBat flying with a psychedelic background.">
         </div>
 
-        <!-- The new lore box provides a backstory for the character -->
+        <!-- The lore box provides a backstory for the character -->
         <div class="lore-box">
             <p>From the darkest depths of the digital cosmos, a groovy hero emerges! The Mutant HippieBat, a creature of pure chill and radical energy, flies on waves of cosmic sound. With its trusty headband and ever-present stick of incense, it travels the pixelverse, bringing peace, love, and sweet jams to all!</p>
+        </div>
+
+        <!-- A new container for the three distinct collection links -->
+        <div class="links-container">
+            <a href="https://opensea.io/collection/mutantbatz-by-ozzy-osbourne" class="collection-link" target="_blank">MutantBatz</a>
+            <a href="https://opensea.io/collection/cryptobatz-by-ozzy-osbourne" class="collection-link" target="_blank">CryptoBatz</a>
+            <a href="https://opensea.io/collection/ancientbatz" class="collection-link" target="_blank">AncientBatz</a>
         </div>
     </div>
 
